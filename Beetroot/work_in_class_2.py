@@ -157,23 +157,26 @@ fourth_day = 'Thursday'
 fifth_day = 'Friday'
 sixth_day = 'Saturday'
 seventh_day = 'Sunday'
-present_day = int(input('What day of the week is it, enter an integer: '))
-if present_day >= 7:
-    if present_day == 1:
+present_day = input('What day of the week is it, enter an integer from 1 to 7: ')
+if present_day.isdigit() == True and present_day <=str(7):
+    if present_day == str(1):
         print(first_day)
-    elif present_day == 2:
+    elif present_day == str(2):
         print(second_day)
-    elif present_day == 3:
+    elif present_day == str(3):
         print(the_third_day)
-    elif present_day == 4:
+    elif present_day == str(4):
         print(fourth_day)
-    elif present_day == 5:
+    elif present_day == str(5):
         print(fifth_day)
-    elif present_day == 6:
+    elif present_day == str(6):
         print(sixth_day)
-    elif present_day == 7:
+    elif present_day == str(7):
         print(seventh_day)
     else:
-        print("What a beautiful day")
+        print("what a beautiful day today, unfortunately I don’t have a day under the number in the database:", present_day)
+elif present_day.isalpha() == True:
+    print("Must be integers ONLY from 1 to 7 and you entered:", present_day)
+
 else:
-    print("Must be a Integer digit only!!")
+    print("Must be ONLY integers from 1 to 7, not", present_day)
