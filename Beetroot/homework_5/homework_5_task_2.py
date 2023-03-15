@@ -1,5 +1,5 @@
-first_name = str(input("Your First Name: ")) #Input user First name
-last_name = str(input(" Your last Name: ")) #Input user Last name
+first_name = input("Your First Name: ") #Input user First name
+last_name = input(" Your last Name: ") #Input user Last name
 your_age = int(input("Your Age: ")) # Input user Age
 greetings = "Good day" # Greetings
 #Print greeting for user whit age calculate

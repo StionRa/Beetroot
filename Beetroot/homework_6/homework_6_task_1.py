@@ -1,3 +1,5 @@
+
+#    VARIANT 1
 import random # import random module
 
 while True:
@@ -13,3 +15,13 @@ while True:
         print("You guessed the number!!") #If they match, the user is congratulated and the program ends with a break.
         break
 #If the numbers don't match, we go back to the beginning of the while loop
+
+
+#     VARIANT 2
+
+import random  # import random module
+n = random.sample(range(1, 15), 10)
+n.sort()
+print(n)
+print("Найбольшее число: ", n[-1])
+

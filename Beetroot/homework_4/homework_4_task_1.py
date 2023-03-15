@@ -9,5 +9,5 @@ l = len(enter_text)
 if l >= 2:
     print("Input string: " + enter_text + '\n' + "New String: " + newString)
 else:
-    # print("Input string: " + enter_text + '\n' + "Empty String")
-    print(enter_text)
+    print("Input string: " + enter_text + '\n' + "Empty String")
+    #print(enter_text)
