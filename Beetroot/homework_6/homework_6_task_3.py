@@ -22,5 +22,15 @@
 # print (','.join(my_new_list))
 
 # Option 3 from lesson 7
-sevens = [i for i in range(0, 101, 7) if i % 5 != 0]
-print(sevens)
+# sevens = [i for i in range(0, 101, 7) if i % 5 != 0]
+# print(sevens)
+
+while True:
+    num_a = []
+    for i in range(101):
+        if i %7 == 0 and i % 5 != 0:
+            num_a.append(i)
+            continue
+    else:
+        break
+print(num_a)
