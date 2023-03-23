@@ -1,7 +1,7 @@
-days = ["Monday", "Thusday"]
-for i in range(len(days)):
-    days[i] = (i+10, days[i], len(days[i]), len(days[i]) %2 == 0)
-print(days)
+# days = ["Monday", "Thusday"]
+# for i in range(len(days)):
+#     days[i] = (i+10, days[i], len(days[i]), len(days[i]) %2 == 0)
+# print(days)
 
 # nums = []
 # for i in range (3, 323):
