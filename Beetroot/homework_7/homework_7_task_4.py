@@ -6,10 +6,8 @@
 # print(x)
 # print(y)
 day_a = ['Monday', 'Tuesday', 'Wednesday',' Thursday',' Friday', 'Saturday', 'Sunday']
-day_m = [i for i in range(1, 8)]
-day_x = {day_a[i]: day_m[i] for i in range(len(day_a))}
-day_rev = {day_m[i]: day_a[i] for i in range(len(day_a))}
+day_x = {day_a[i]: i+1 for i in range(len(day_a))}
+day_rev = {i+1: day_a[i] for i in range(len(day_a))}
 print(day_a)
-print(day_m)
 print(day_x)
 print(day_rev)
