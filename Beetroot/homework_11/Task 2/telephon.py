@@ -19,6 +19,7 @@ class MyException(Exception):
     def __str__(self):
         return self.message
 def add_entry():
+
     while True:
         first_name = input('please, input your First Name: ').lower()
         if (first_name == ''):
