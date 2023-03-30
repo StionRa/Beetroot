@@ -21,3 +21,11 @@ catch()
 # KeyError
 
 #The catch function will not catch the Index Error, and the oops function itself will throw a key error
+def oops():
+    raise KeyError
+def catch():
+    try:
+        oops()
+    except IndexError:
+        print('Caught Index Error')
+catch()
