@@ -25,12 +25,28 @@
 # sevens = [i for i in range(0, 101, 7) if i % 5 != 0]
 # print(sevens)
 
+# while True:
+#     num_a = []
+#     for i in range(101):
+#         if i %7 == 0 and i % 5 != 0:
+#             num_a.append(i)
+#             continue
+#     else:
+#         break
+# print(num_a)
+
+list = []
+sep_list = []
+i = 1
+while i < 101:
+    list. append(i)
+    i += 1
+
 while True:
-    num_a = []
-    for i in range(101):
-        if i %7 == 0 and i % 5 != 0:
-            num_a.append(i)
-            continue
-    else:
-        break
-print(num_a)
+    for x in list:
+        if x % 7 == 0 and x % 5 != 0:
+            sep_list.append(x)
+    break
+
+print(list)
+print(sep_list)
