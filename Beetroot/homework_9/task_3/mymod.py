@@ -3,13 +3,10 @@ def count_lines(name):
     with open(name) as f:
         return len(f.readlines())
 
-print(count_lines('text.txt'))
-
 
 def count_chars(name):
     with open(name) as f:
         return len(f.read())
-print(count_chars('text.txt'))
 
 
 # def test(name):
@@ -22,6 +19,13 @@ print(count_chars('text.txt'))
 # print(test('text.txt'))
 
 def test(name):
-    return count_lines(name), count_chars(name)
+    lines = count_lines(name)
+    characters = count_chars(name)
+    if lines == 0:
+        return name, "Have no line!"
+    elif characters == 0:
+        return name, "Have no characters!"
+    else:
+        print(name, "have", lines, "lines and", characters, "characters")
 
-print(test('text.txt'))
+test('text.txt')
