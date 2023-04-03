@@ -1,31 +1,17 @@
+#Function called oops that explicitly raises Index Error:
 def oops():
-    raise IndexError
-def catch():
+    ob = IndexError
+    raise  ob
+def oops_two():
+    er = KeyError
+    raise er
+#Function called another_function which calls the oops function:
+def another_function():
     try:
         oops()
-    except IndexError:
-        print('Caught Index Error')
-catch()
-#але не має відповіді на питання для задачі 1 (не зарах.):
-#'What happens if you change oops to raise KeyError instead of IndexError?'
-
-# Here's what's going to happen:
-
-# Traceback (most recent call last):
-#   File "/home/stanislavus/PycharmProjects/Beetroot/homework_10/task_1.py", line 8, in <module>
-#     catch()
-#   File "/home/stanislavus/PycharmProjects/Beetroot/homework_10/task_1.py", line 5, in catch
-#     oops()
-#   File "/home/stanislavus/PycharmProjects/Beetroot/homework_10/task_1.py", line 2, in oops
-#     raise KeyError
-# KeyError
-
-#The catch function will not catch the Index Error, and the oops function itself will throw a key error
-def oops():
-    raise KeyError
-def catch():
-    try:
-        oops()
-    except IndexError:
-        print('Caught Index Error')
-catch()
+        #oops_two()
+    except:
+        print("Error caught")
+# If we change oops() to raise Key Error instead of Index Error, then another_function() will also capture the KeyError.
+# Споймает ошибку в любом случае
+another_function()
