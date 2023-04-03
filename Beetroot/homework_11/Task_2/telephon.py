@@ -3,8 +3,8 @@ import json
 import os
 import sys
 # Define the name of the JSON file
-FILE_NAME = 'telephone_book.json'
-#FILE_NAME = sys.argv[1]
+#FILE_NAME = 'telephone_book_1.json'
+FILE_NAME = sys.argv[1]
 # Load existing data from JSON file or initialize an empty dictionary
 try:
     with open(FILE_NAME, 'r') as f:
@@ -18,19 +18,23 @@ class MyException(Exception):
 
     def __str__(self):
         return self.message
+
+# def read_data():
+#     with open(FILE_NAME, 'r') as f:
+#         json.read(telephone_book, f)
 def add_entry():
 
     while True:
         first_name = input('please, input your First Name: ').lower()
         if (first_name == ''):
-            print('Must be First Name, not leer')
+            print('First Name can`t be leer')
             continue
         else:
             break
     while True:
         last_name = input('please, input your Last Name: ').lower()
         if (last_name == ''):
-            print('Last name not must be leer')
+            print('Last name can`t be leer')
             continue
         else:
             break
