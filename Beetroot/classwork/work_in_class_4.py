@@ -1,9 +1,9 @@
-# Write a Python program to construct the following pattern, using a while loop
-# n = 8
-# for i in range(1, n // 2 + 2):
-#     print('*' * i, sep='\n')
-# for i in range(n // 2, 0, -1):
-#     print('*' * i)
+#Write a Python program to construct the following pattern, using a while loop
+n = 8
+for i in range(1, n // 2 + 2):
+    print('*' * i, sep='\n')
+for i in range(n // 2, 0, -1):
+    print('*' * i)
 
 # #Write a python program, which sums all digits in a python string.
 # #Examples, input - ‘1234’, output - 10

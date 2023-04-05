@@ -1,0 +1,19 @@
+{
+    "items": [
+        {
+            "id": "80565dad-a7c2-4f85-88ef-bc66bce39db0",
+            "name": "apple",
+            "price": 0.5
+        },
+        {
+            "id": "2056a351-c734-4ef4-aff7-7b7afe5365ea",
+            "name": "banana",
+            "price": 0.25
+        },
+        {
+            "id": "3c70fcc4-f68d-4833-944a-aedb585f4497",
+            "name": "orange",
+            "price": 0.75
+        }
+    ]
+}
