@@ -1,43 +1,11 @@
 import json
 import os
 import sys
-import player
-
-file_path = 'map_generator.json'
-objects = {}
-def create_new_dict(filename):
-    # Check if the file exists
-    if os.path.exists(filename):
-        # If the file exists, check if it is empty
-        if os.path.getsize(filename) == 0:
-            # If the file is empty, create a new dictionary and write it to the file
-            objects = [{'player_name': None, 'role': None, 'health_point': 0, 'mana_point': 0, 'player_str': 0, 'player_int': 0}]
-            with open(filename, "w") as f:
-                json.dump(objects, f)
-            print("Created new dictionary in file:", filename)
-        else:
-            print("File is not empty:", filename)
-    else:
-        # If the file does not exist, create a new dictionary and write it to the file
-        objects = [{'player_name': None, 'role': None, 'health_point': 0, 'mana_point': 0, 'player_str': 0, 'player_int': 0}]
-        with open(filename, "w") as f:
-            json.dump(objects, f)
-        print("Created new file and dictionary:", filename)
-def load_file():
-    with open(file_path, 'r') as db_file_one:
-        json.load(db_file_one)
-def save_file():
-    with open(file_path, 'w')as db_map:
-            json.dump(objects, db_map)
-
-def addObject(name, x, y, symbol):
-    objects[name] = [x, y, symbol]
-try:
-    with open(file_path, 'r') as db_file:
-        objects = json.load(db_file)
-except FileNotFoundError:
-    addObject('player', 6, 6, "P")
-
+import player as db_player
+db_player.create_new_dict(db_player.file_path)
+pos = db_player.open_position_player()
+objects = []
+objects.append(pos)
 def move():
     while True:
         player = input("""
@@ -47,39 +15,38 @@ def move():
             for place in objects:
                 os.system('clear')
                 if player == 'n':
-                    load_file()
+                    db_player.open_file_player()
                     if objects[place][0] == 1:
                         print('Wrong way!!!')
                     else:
                         objects[place][0] -= 1
                 elif player == 's':
-                    load_file()
+                    db_player.open_file_player()
                     if objects[place][0] == 11:
                         print('You can`t go there!!!')
                     else:
                         objects[place][0] += 1
                 elif player == 'e':
-                    load_file()
+                    db_player.open_file_player()
                     if objects[place][1] == 11:
                         print('No Way out!!!')
                     else:
                         objects[place][1] += 1
                 elif player == 'w':
-                    load_file()
+                    db_player.open_position_player()
                     if objects[place][1] == 1:
                         print("Go out there!!!")
                     else:
                         objects[place][1] -= 1
                 elif player == 'q':
-                    save_file()
-                    db_file.close()
+                    #db_player.dump_file_player_all()
                     quit()
                 else:
                     print('Invalid input!!')
         except:
             pass
         finally:
-            save_file()
+            #db_player.dump_file_player_all()
             map()
 def map():
     global objects
@@ -89,7 +56,7 @@ def map():
         for y in range(11):
             num_y = y+1
             for place in objects:
-                if objects[place][:2] == [num_x, num_y]:
+                if objects[place][-2:] == [num_x, num_y]:
                     line +=" " + objects[place][2] + " "
                     break
             else:
@@ -105,8 +72,7 @@ def map():
 
 
 if __name__ == '__main__':
-    #start_game()
-    create_new_dict(file_path)
+    db_player.create_new_dict(db_player.file_path)
     print('Welkomme in to Text Role Play Game')
     print('''
     This game is under constraction.
@@ -119,17 +85,16 @@ if __name__ == '__main__':
     3. exit
     """)
     if choise == '1':
-        objects_player = [player.open_player_file()]
+        objects_player = [db_player.open_file_player()]
         player_name = input('Please enter you Name hier: ')
         role = 'warrior'
         health_points = 5
         mana_point = 2
         player_str = 1
         player_int = 1
-        objects_player_new = {'player_name': player_name, 'role': role, 'health_point': health_points, 'mana_point': mana_point, 'player_str': player_str,
-                          'player_int': player_int}
+        objects_player_new = {"player_name": player_name, "role": role, "health_point": health_points, "mana_point": mana_point, "player_str": player_str, "player_int": player_int, "position_x": 6, "position_y": 6}
         objects_player.append(objects_player_new)
-        player.dump_file_player(objects_player)
+        db_player.dump_file_player(objects_player)
 
         move()
     elif choise == '2':
