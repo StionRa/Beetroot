@@ -81,6 +81,7 @@ def map():
                 line += " " + '0' + " "
         print(line)
 
+
 if __name__ == '__main__':
     #start_menu()
     load_player()
