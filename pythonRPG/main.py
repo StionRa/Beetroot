@@ -1,6 +1,9 @@
 import json
+#import data base file
 import open_file as db_player
+#global dict what cash a player data
 player_map_icon = {}
+# This is Start menu, first what see player in game
 def start_menu():
     db_player.create_file()
     print("Welcome to your RPG game!\n")
@@ -18,7 +21,7 @@ def start_menu():
     else:
         print("Invalid choice, please try again.\n")
         start_menu()
-
+#this function take a data from db and convert for game function
 def load_player():
     global player_map_icon
     with open(db_player.filename, 'r') as data:
@@ -32,11 +35,13 @@ def load_player():
     player_icon = player_map_icon['items'][0]['player_icon']
     position_x = player_map_icon['items'][0]['position_x']
     position_y = player_map_icon['items'][0]['position_y']
-    player_dict = {"player_name": player_name, "role": role, "health_point": health_point, "mana_point": mana_point,
-     "player_str": player_str, "player_int": player_int, "player_icon": player_icon, "position_x": position_x, "position_y": position_y}
-    return player_dict
+    #player_dict = {"player_name": player_name, "role": role, "health_point": health_point, "mana_point": mana_point,
+     #"player_str": player_str, "player_int": player_int, "player_icon": player_icon, "position_x": position_x, "position_y": position_y}
+# function control game, maps, movement etc.
 def load_game():
-    pass
+    load_player()
+    move()
+# function create new player and save data in DB
 def new_game():
     db_player.read_file()
     print("Starting a new game...\n")
@@ -54,6 +59,7 @@ def new_game():
     db_player.append_to_file(player_dict)
     print(f"Hi {player_name}, you are awesome!!")
     load_game()
+# function for creating new character in the game
 def choose_role():
     print("Choose your role:\n")
     print("1. Warrior")
@@ -69,6 +75,7 @@ def choose_role():
     else:
         print("Invalid choice, please try again.\n")
         return choose_role()
+# map generator
 def map():
     for x in range(11):
         line = ''
@@ -80,10 +87,38 @@ def map():
             else:
                 line += " " + '0' + " "
         print(line)
-
-
+#control movement function, work with map and save every step in DB
+def move():
+    while True:
+        try:
+            map()
+            choise = input("Nord - Up, South - Down, West - Left, East - Rigth: ").lower()
+            if choise == 'n':
+                if player_map_icon['items'][0]['position_x'] == 1:
+                    print("You can`t go this way!")
+                else:
+                    player_map_icon['items'][0]['position_x'] -= 1
+            elif choise == 's':
+                if player_map_icon['items'][0]['position_x'] == 11:
+                    print("You can`t go this way!")
+                else:
+                    player_map_icon['items'][0]['position_x'] += 1
+            elif choise == 'w':
+                if player_map_icon['items'][0]['position_y'] == 1:
+                    print("You can`t go this way!")
+                else:
+                    player_map_icon['items'][0]['position_y'] -= 1
+            elif choise == 'e':
+                if player_map_icon['items'][0]['position_y'] == 11:
+                    print("You can`t go this way!")
+                else:
+                    player_map_icon['items'][0]['position_y'] += 1
+            else:
+                print('Invalid input!!')
+        except:
+            pass
+        finally:
+            db_player.save_file(player_map_icon)
+# function, what startet a game
 if __name__ == '__main__':
-    #start_menu()
-    load_player()
-    print(load_player())
-    map()
+    start_menu()

@@ -33,7 +33,9 @@ def read_file():
     with open(filename, "r") as f:
         data_new = json.load(f)
         return data_new["items"]
-
+def save_file(name_file):
+    with open(filename, 'w') as f:
+        json.dump(name_file, f)
 def append_to_file(new_data):
     # Read the current data from the file
     current_data = read_file()
