@@ -1,0 +1,27 @@
+{
+    "Person": [
+        {
+            "ID": "a0f8a75f-fd62-4461-a157-c4217db8c283",
+            "first_name": "Stanislav",
+            "last_name": "Zelinskyi",
+            "birthday": "09.08.1983",
+            "age": 39,
+            "sex": "male",
+            "email": "stanislav.zelinskyy@gmail.com",
+            "password": "655008SweepeR",
+            "Fitness_Data": [
+                {
+                    "height": 1.8,
+                    "weight": 64,
+                    "body_type": "Ectomorph",
+                    "target_weight": 80,
+                    "time_to_goal": 90,
+                    "activity_level": "training",
+                    "bmi": 19.75,
+                    "miffin": null,
+                    "kkal_need": null
+                }
+            ]
+        }
+    ]
+}

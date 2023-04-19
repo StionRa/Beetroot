@@ -1,124 +1,145 @@
 import json
-#import data base file
-import open_file as db_player
-#global dict what cash a player data
-player_map_icon = {}
-# This is Start menu, first what see player in game
-def start_menu():
-    db_player.create_file()
-    print("Welcome to your RPG game!\n")
-    print("1. New Game")
-    print("2. Load Game")
-    print("3. Quit\n")
-    choice = input("Enter your choice (1-3): ")
-    if choice == "1":
-        new_game()
-    elif choice == "2":
-        load_game()
-    elif choice == "3":
-        print("Thanks for playing!")
-        exit()
+import os
+import uuid
+
+filename = "data_person.json"
+
+
+def create_file(new_data):
+    if not os.path.exists(filename):
+        data = {"Person": [new_data]}
+        with open(filename, 'w') as file:
+            json.dump(data, file, indent=4)
+    elif os.path.getsize(filename) == 0:
+        data = {"Person": [new_data]}
+        with open(filename, 'w') as file:
+            json.dump(data, file, indent=4)
+    elif os.path.exists(filename) and os.path.getsize(filename) > 0:
+        # Read the current data from the file
+        with open(filename, "r") as file:
+            current_data = json.load(file)
+        # Append the new data to the current data
+        current_data["Person"].append(new_data)
+        # Write the updated data back to the file
+        with open(filename, "w") as f:
+            json.dump(current_data, f, indent=4)
     else:
-        print("Invalid choice, please try again.\n")
-        start_menu()
-#this function take a data from db and convert for game function
-def load_player():
-    global player_map_icon
-    with open(db_player.filename, 'r') as data:
-        player_map_icon = json.load(data)
-    player_name = player_map_icon['items'][0]['player_name']
-    role = player_map_icon['items'][0]['role']
-    health_point = player_map_icon['items'][0]['health_point']
-    mana_point = player_map_icon['items'][0]['mana_point']
-    player_str = player_map_icon['items'][0]['player_str']
-    player_int = player_map_icon['items'][0]['player_int']
-    player_icon = player_map_icon['items'][0]['player_icon']
-    position_x = player_map_icon['items'][0]['position_x']
-    position_y = player_map_icon['items'][0]['position_y']
-    #player_dict = {"player_name": player_name, "role": role, "health_point": health_point, "mana_point": mana_point,
-     #"player_str": player_str, "player_int": player_int, "player_icon": player_icon, "position_x": position_x, "position_y": position_y}
-# function control game, maps, movement etc.
-def load_game():
-    load_player()
-    move()
-# function create new player and save data in DB
-def new_game():
-    db_player.read_file()
-    print("Starting a new game...\n")
-    role = choose_role()
-    player_name = input("Enter your name: ")
-    health_point = 50
-    mana_point = 20
-    player_str = 10
-    player_int = 10
-    player_icon = "P"
-    position_x = 6
-    position_y = 6
-    player_dict = {"player_name": player_name, "role": role, "health_point": health_point, "mana_point": mana_point,
-     "player_str": player_str, "player_int": player_int, "player_icon": player_icon, "position_x": position_x, "position_y": position_y}
-    db_player.append_to_file(player_dict)
-    print(f"Hi {player_name}, you are awesome!!")
-    load_game()
-# function for creating new character in the game
-def choose_role():
-    print("Choose your role:\n")
-    print("1. Warrior")
-    print("2. Mage")
-    print("3. Rogue\n")
-    choice = input("Enter your choice (1-3): ")
-    if choice == "1":
-        return "Warrior"
-    elif choice == "2":
-        return "Mage"
-    elif choice == "3":
-        return "Rogue"
+        return "something wrong"
+
+
+def open_file():
+    with open(filename, "r") as file:
+        data = json.load(file)
+
+
+def new_person():
+    choise = input('''
+    Good afternoon:
+    1. Register
+    2. Login
+    3. Exit
+    => ''')
+    if choise == "1":
+        print('''
+        input your information in the form below''')
+        person_id = str(uuid.uuid4())
+        first_name = input("First Name: ")
+        last_name = input("Last Name: ")
+        birthday = input("Your birthday dd.mm.yyyy: ")
+        age = int(input("Your age: "))
+        sex = input("Your sex male or female: ")
+        email = input("Your email: ")
+        password = input("Your password: ")
+        height = float(input("Your Height in meters if you 180 cm input 1.80: "))
+        weight = int(input("You weight in kg: "))
+        body_type = input("Input your body type - Ectomorph, Mesomorph, Ecto_mesomorph, Endpmorph: ")
+        activity_level = input("Enter your activity - low, light, training, intense, maximum intensity: ")
+        target_weight = int(input("What weight you want to have after training? "))
+        time_to_goal = int(input("what period of time you want to achieve the desired result. "
+                                 "You need to enter the number of days: "))
+
+        new_data = {"ID": person_id, "first_name": first_name, "last_name": last_name, "birthday": birthday,
+                    "age": age, "sex": sex, "email": email, "password": password, "Fitness_Data":
+                        [{"height": height, "weight": weight, "body_type": body_type,
+                          "target_weight": target_weight,
+                          "time_to_goal": time_to_goal, "activity_level": activity_level, "bmi": None,
+                          "miffin": None, "kkal_need": None}]}
+        create_file(new_data)
+    elif choise == "2":
+        pass
     else:
-        print("Invalid choice, please try again.\n")
-        return choose_role()
-# map generator
-def map():
-    for x in range(11):
-        line = ''
-        num_x = x + 1
-        for y in range(11):
-            num_y = y + 1
-            if player_map_icon['items'][0]['position_x'] == num_x and player_map_icon['items'][0]['position_y'] == num_y:
-                line += " " + player_map_icon['items'][0]['player_icon'] + " "
-            else:
-                line += " " + '0' + " "
-        print(line)
-#control movement function, work with map and save every step in DB
-def move():
-    while True:
-        try:
-            map()
-            choise = input("Nord - Up, South - Down, West - Left, East - Rigth: ").lower()
-            if choise == 'n':
-                if player_map_icon['items'][0]['position_x'] == 1:
-                    print("You can`t go this way!")
+        print("Wrong Value")
+
+
+def bmi_level():
+    with open(filename, "r") as file:
+        data = json.load(file)
+        for x in data['Person']:
+            for y in x["Fitness_Data"]:
+                height = y["height"]
+                weight = y["weight"]
+                formula = weight / (height ** 2)
+                with open(filename, "r") as file:
+                    data = json.load(file)
+                    for x in data["Person"]:
+                        for y in x["Fitness_Data"]:
+                            y["bmi"] = round(formula, 2)
+                            with open(filename, "w") as file:
+                                json.dump(data, file, indent=4)
+
+                return round(formula, 2)
+
+
+def formula_bmi(level):
+    with open(filename, "r") as file:
+        data = json.load(file)
+        for x in data["Person"]:
+                if x["sex"] == 'male':
+                    if 18 <= x['age'] <= 24:
+                        normal_range = (19, 24)
+                    elif 25 <= x['age'] <= 34:
+                        normal_range = (20, 25)
+                    elif 35 <= x['age'] <= 44:
+                        normal_range = (21, 26)
+                    elif 45 <= x['age'] <= 54:
+                        normal_range = (22, 27)
+                    elif 55 <= x['age'] <= 64:
+                        normal_range = (23, 28)
+                    else:
+                        print("Данный возраст не входит в диапазон для мужчин.")
+                        exit()
+                elif x["sex"] == "female":
+                    if 18 <= x['age'] <= 24:
+                        normal_range = (19, 23)
+                    elif 25 <= x['age'] <= 34:
+                        normal_range = (20, 25)
+                    elif 35 <= x['age'] <= 44:
+                        normal_range = (21, 26)
+                    elif 45 <= x['age'] <= 54:
+                        normal_range = (22, 27)
+                    elif 55 <= x['age'] <= 64:
+                        normal_range = (23, 28)
+                    else:
+                        print("Данный возраст не входит в диапазон для женщин.")
+                        exit()
                 else:
-                    player_map_icon['items'][0]['position_x'] -= 1
-            elif choise == 's':
-                if player_map_icon['items'][0]['position_x'] == 11:
-                    print("You can`t go this way!")
+                    print("Некорректно указан пол. Введите 'м' для мужского пола или 'ж' для женского пола.")
+                    exit()
+                if level < normal_range[0]:
+                    category = "недостаточный вес"
+                elif normal_range[0] <= level <= normal_range[1]:
+                    category = "нормальный вес"
                 else:
-                    player_map_icon['items'][0]['position_x'] += 1
-            elif choise == 'w':
-                if player_map_icon['items'][0]['position_y'] == 1:
-                    print("You can`t go this way!")
-                else:
-                    player_map_icon['items'][0]['position_y'] -= 1
-            elif choise == 'e':
-                if player_map_icon['items'][0]['position_y'] == 11:
-                    print("You can`t go this way!")
-                else:
-                    player_map_icon['items'][0]['position_y'] += 1
-            else:
-                print('Invalid input!!')
-        except:
-            pass
-        finally:
-            db_player.save_file(player_map_icon)
-# function, what startet a game
-if __name__ == '__main__':
-    start_menu()
+                    category = "избыточный вес или ожирение"
+                print("Ваш ИМТ составляет {:.1f}".format(level))
+                print("Нормальный диапазон ИМТ для вашего пола и возраста: {}-{}".format(normal_range[0], normal_range[1]))
+                print("Ваша категория массы тела: {}".format(category))
+
+
+def calculate():
+    pass
+
+
+# new_person()
+print(bmi_level())
+print(formula_bmi(bmi_level()))
