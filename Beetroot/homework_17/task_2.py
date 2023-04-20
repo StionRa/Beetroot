@@ -62,7 +62,7 @@ class Boss:
 class Worker:
     def __init__(self, id_: int, name: str, company: str, boss=None):
 
-        Initializes a new instance of the Worker class.
+        #Initializes a new instance of the Worker class.
         # Args:
         #     id_ (int): Unique ID for the worker.
         #     name (str): Name of the worker.
