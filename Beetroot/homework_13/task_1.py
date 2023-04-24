@@ -4,6 +4,7 @@
 def logger(func):
     def wrapper(*args, **kwargs):
         arg_list = []
+        print(func.__name__, *args, kwargs)
 
         # Print positional arguments
         for arg in args:
@@ -28,5 +29,5 @@ def my_func(x, y, z=None):
 def square_all(*args):
     return [arg ** 2 for arg in args]
 
-print(my_func(1, 2, z = 5))
-print(square_all(1, 2, 3, 4, 5, 6, 7, 8, 9))
+print(my_func)
+print(square_all)
