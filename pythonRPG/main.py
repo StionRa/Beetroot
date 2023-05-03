@@ -52,7 +52,7 @@ def new_person():
         password = input("Your password: ")
         height = float(input("Your Height in meters if you 180 cm input 1.80: "))
         weight = int(input("You weight in kg: "))
-        body_type = input("Input your body type - Ectomorph, Mesomorph, Ecto_mesomorph, Endpmorph: ")
+        body_type = input("Input your body type - Ectomorph, Mesomorph, Ecto_mesomorph, Endomorph: ")
         activity_level = input("Enter your activity - low, light, training, intense, maximum intensity: ")
         target_weight = int(input("What weight you want to have after training? "))
         time_to_goal = int(input("what period of time you want to achieve the desired result. "
