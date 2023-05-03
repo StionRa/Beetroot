@@ -21,7 +21,3 @@ class FileManager:
         if exc_type is not None:
             logging.error(f"An error occurred: {exc_val}")
         return False
-
-
-# with FileManager('example.txt', 'w') as file:
-#     file.write('hello Karolina')

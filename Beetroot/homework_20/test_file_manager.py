@@ -67,5 +67,6 @@ class TestFileManager(unittest.TestCase):
         self.assertIn(expected_log, log_content)
 
 
+
 if __name__ == '__main__':
     unittest.main()

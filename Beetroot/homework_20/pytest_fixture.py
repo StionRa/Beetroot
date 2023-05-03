@@ -21,4 +21,3 @@ def process_text_data(file_obj):
 def test_process_text_data(file_obj):
     expected_output = 'HELLO WORLD!\nTHIS IS A TEST.\n'
     assert process_text_data(file_obj) == expected_output
-
