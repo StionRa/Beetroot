@@ -51,4 +51,3 @@ class Steck:
             count += 1
             current = current.next
         return count
-
