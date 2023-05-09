@@ -58,3 +58,4 @@ class Queue:
             count += 1
             current = current.next
         return count
+
