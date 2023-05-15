@@ -4,6 +4,7 @@ class Node:
         self.left = None
         self.right = None
 
+
 class BinaryTree:
     def __init__(self):
         self.root = None
@@ -45,6 +46,7 @@ class BinaryTree:
             self._inorder_recursive(node.left)
             print(node.data, end=" ")
             self._inorder_recursive(node.right)
+
 
 # Приклад використання
 

@@ -103,14 +103,14 @@ tree.getLeftChild().insertTreeLeft(subtree)
 # Печать всего дерева
 tree.printTree()
 
-# # Печать только левой ветки
-# tree.getLeftChild().printTree()
+# Печать только левой ветки
+tree.getLeftChild().printTree()
 
-# # Удаление правой ветки
-# tree.deleteRightChild()
-#
-# # Удаление левого листа
-# tree.getLeftChild().deleteRightChild()
-#
-# # Удаление всего дерева
-# tree.deleteTree()
+# Удаление правой ветки
+tree.deleteRightChild()
+
+# Удаление левого листа
+tree.getLeftChild().deleteRightChild()
+
+# Удаление всего дерева
+tree.deleteTree()
