@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/task_1.sql" dialect="GenericSQL" />
+    <file url="file://$USER_HOME$/Документи/beetroot_classwork/python_group_1_homeworks/Stanislav Zelinskyi/lesson_30_SQL/task_1.sql" dialect="GenericSQL" />
+    <file url="PROJECT" dialect="SQLite" />
+  </component>
+</project>

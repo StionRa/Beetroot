@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="console.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
+    <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/e66326cf-e6ec-48a4-9753-52078737cc57/console.sql" />
+    <script-mode>FILE</script-mode>
+    <data-source id="ea86856c-04b9-4a3e-8de2-a5b080e304ab" />
+    <method v="2">
+      <option name="LaunchBrowser.Before.Run" />
+    </method>
+  </configuration>
+</component>
